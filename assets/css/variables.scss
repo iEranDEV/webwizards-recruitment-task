@@ -1,0 +1,20 @@
+$white-color: #FFFFFF;
+$black-color: #000000;
+$primary-color: #FF4359;
+$secondary-color: #FC435933;
+$gray-color: #AFAFAF;
+
+$lg: 1024px;
+$xl: 1280px;
+
+@mixin lg {
+    @media screen and (min-width: 1024px) {
+        @content;
+    }
+}
+
+@mixin xl {
+    @media screen and (min-width: 1280px) {
+        @content;
+    }
+}
