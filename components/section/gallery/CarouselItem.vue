@@ -9,6 +9,7 @@
                 calcGap() +
                 'px)',
             background: 'url(' + props.path + ')',
+            opacity: currentSlide === index ? 1 : 0.2,
         }"
     ></div>
 </template>
