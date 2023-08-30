@@ -1,5 +1,5 @@
 <template>
-    <div id="carousel_wrapper">
+    <div id="carouselWrapper">
         <div id="carousel">
             <div
                 id="prevSlide"
@@ -44,6 +44,10 @@ const slides = [
 
 const currentSlide = ref(2);
 
+const set = (val: number) => {
+    currentSlide.value = val;
+};
+
 const move = (val: number) => {
     if (
         currentSlide.value + val >= 0 &&
@@ -55,7 +59,7 @@ const move = (val: number) => {
 </script>
 
 <style lang="scss">
-#carousel_wrapper {
+#carouselWrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -89,16 +93,17 @@ const move = (val: number) => {
     height: 100%;
     width: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
     color: $gray-color;
 }
 
 #prevSlide {
     grid-area: 1 / 1 / 2 / 2;
+    justify-content: end;
 }
 
 #nextSlide {
     grid-area: 1 / 12 / 2 / 13;
+    justify-content: start;
 }
 </style>

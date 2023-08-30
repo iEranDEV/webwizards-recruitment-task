@@ -1,11 +1,11 @@
 <template>
-    <section id="start_section">
-        <div id="hero_image"></div>
+    <section id="startSection">
+        <div id="heroImage"></div>
     </section>
 </template>
 
 <style lang="scss">
-#hero_image {
+#heroImage {
     height: 700px;
     background-image: url("/hero_image.png");
     background-position: center;

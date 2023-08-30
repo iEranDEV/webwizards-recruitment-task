@@ -1,10 +1,10 @@
 <template>
-    <div id="about_section">
-        <div id="about_wrapper">
-            <div id="about_me_img"></div>
-            <div id="about_me_text">
+    <div id="aboutSection">
+        <div id="aboutWrapper">
+            <div id="aboutImg"></div>
+            <div id="aboutText">
                 <h1>O MNIE</h1>
-                <span style="margin-top: 45px">
+                <span id="aboutContent">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                     do eiusmod tempor incididunt ut labore et dolore magna
                     aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -32,7 +32,13 @@
 </template>
 
 <style lang="scss">
-#about_section {
+#aboutContent {
+    letter-spacing: 0px;
+    font-size: 16px;
+    margin-top: 45px;
+}
+
+#aboutSection {
     background: $white-color;
     display: flex;
     align-items: center;
@@ -43,7 +49,7 @@
     }
 }
 
-#about_me_img {
+#aboutImg {
     width: 100%;
     height: 600px;
     background-image: url("./about_img.png");
@@ -60,7 +66,7 @@
     }
 }
 
-#about_wrapper {
+#aboutWrapper {
     display: flex;
     flex-direction: column;
     padding: 20px 20px;
@@ -78,7 +84,7 @@
     }
 }
 
-#about_me_text {
+#aboutText {
     display: flex;
     flex-direction: column;
     width: 100%;

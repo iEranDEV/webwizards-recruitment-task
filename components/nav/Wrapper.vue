@@ -10,14 +10,21 @@
         >
             <!-- Links -->
             <div id="navBarItems">
-                <NavItem name="START" link="#start_section" />
-                <NavItem name="O MNIE" link="#about_section" />
-                <NavItem name="GALERIA" link="#gallery_section" />
-                <NavItem name="KONTAKT" @click="test" />
+                <NavItem name="START" link="#startSection" />
+                <NavItem name="O MNIE" link="#aboutSection" />
+                <NavItem name="GALERIA" link="#gallerySection" />
+                <NavItem
+                    name="KONTAKT"
+                    @click="isContactExpanded = !isContactExpanded"
+                />
             </div>
 
             <!-- Social icons -->
-            <p>icons</p>
+            <div id="socialIcons">
+                <img src="/social/facebook.svg" alt="To go facebook" />
+                <img src="/social/instagram.svg" alt="To go instagram" />
+                <img src="/social/youtube.svg" alt="To go youtube" />
+            </div>
         </div>
 
         <!-- Toggler -->
@@ -25,6 +32,9 @@
             <X v-if="isExpanded" />
             <Menu v-else />
         </div>
+
+        <!-- Contact modal -->
+        <ModalContact v-if="isContactExpanded" :close="closeContactModal" />
     </nav>
 </template>
 
@@ -32,11 +42,12 @@
 import { Menu, X } from "lucide-vue-next";
 import { ref } from "vue";
 
-const test = () => {
-    console.log("test");
-};
-
 const isExpanded = ref(false);
+const isContactExpanded = ref(false);
+
+const closeContactModal = () => {
+    isContactExpanded.value = false;
+};
 </script>
 
 <style lang="scss">
@@ -116,6 +127,17 @@ const isExpanded = ref(false);
 
     @include lg {
         display: none;
+    }
+}
+
+#socialIcons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0px;
+
+    @include lg {
+        margin: 0px 0px;
     }
 }
 </style>

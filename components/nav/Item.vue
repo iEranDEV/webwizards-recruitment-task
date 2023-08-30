@@ -27,7 +27,6 @@ const scrollTo = (e: MouseEvent) => {
 <style lang="scss">
 .nav-item {
     all: unset;
-    font-weight: 300;
     font-size: 12px;
     letter-spacing: 4.8px;
     border-radius: 21px;
@@ -42,7 +41,7 @@ const scrollTo = (e: MouseEvent) => {
     transition: box-shadow 0.2s ease-in-out;
 
     &:hover {
-        box-shadow: 0px 5px 10px #fc435933;
+        box-shadow: 0px 5px 10px $secondary-color;
     }
 }
 </style>

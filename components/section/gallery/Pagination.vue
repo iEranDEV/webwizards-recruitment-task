@@ -1,11 +1,12 @@
 <template>
-    <div id="carousel_pagination">
+    <div id="carouselPagination">
         <div
             v-for="index in props.length"
             :key="index"
-            class="carousel_pagination_item"
+            class="carouselPaginationItem"
+            @click="set(index - 1)"
             :class="{
-                carousel_pagination_item_active: currentSlide === index - 1,
+                carouselPaginationItemActive: currentSlide === index - 1,
             }"
         ></div>
     </div>
@@ -20,7 +21,7 @@ const props = defineProps<{
 </script>
 
 <style lang="scss">
-#carousel_pagination {
+#carouselPagination {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,7 +29,7 @@ const props = defineProps<{
     padding: 20px 0px;
 }
 
-.carousel_pagination_item {
+.carouselPaginationItem {
     background: $gray-color !important;
     border-radius: 100%;
     height: 10px;
@@ -36,7 +37,7 @@ const props = defineProps<{
     transition: all 0.5s;
 }
 
-.carousel_pagination_item_active {
+.carouselPaginationItemActive {
     background: $primary-color !important;
     transform: scale(1.5);
 }

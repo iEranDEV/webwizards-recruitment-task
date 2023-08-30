@@ -1,12 +1,12 @@
 <template>
-    <div id="gallery_section">
+    <div id="gallerySection">
         <h1>GALERIA</h1>
         <SectionGalleryCarousel />
     </div>
 </template>
 
 <style lang="scss">
-#gallery_section {
+#gallerySection {
     height: 100lvh;
     background-color: $white-color;
     display: flex;

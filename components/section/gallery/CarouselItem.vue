@@ -8,9 +8,10 @@
                 '%) translateX(' +
                 calcGap() +
                 'px)',
+            background: 'url(' + props.path + ')',
         }"
     >
-        <img class="slide_img" :src="props.path" alt="Slide" />
+        <!--<img class="slideImg" :src="props.path" alt="Slide" />-->
     </div>
 </template>
 
@@ -40,8 +41,11 @@ calcGap();
     background: green;
     overflow: hidden;
     transition: all 1s;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
 }
-.slide_img {
+.slideImg {
     width: 100%;
 }
 </style>
