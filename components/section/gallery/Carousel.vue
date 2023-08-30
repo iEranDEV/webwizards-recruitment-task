@@ -11,10 +11,13 @@
             <div id="slider">
                 <!-- Previous slide -->
                 <div
+                    @touchend.stop
+                    @touchstart.stop
+                    @click.prevent="move(-1)"
                     id="prevSlide"
                     :class="{ 'active-arrow': currentSlide - 1 >= 0 }"
                 >
-                    <ChevronLeft @click="move(-1)" :size="48" />
+                    <ChevronLeft :size="48" />
                 </div>
 
                 <!-- Images -->
@@ -28,12 +31,15 @@
 
                 <!-- Next slide -->
                 <div
+                    @touchend.stop
+                    @touchstart.stop
+                    @click.prevent="move(1)"
                     id="nextSlide"
                     :class="{
                         'active-arrow': currentSlide < slides.length - 1,
                     }"
                 >
-                    <ChevronRight @click="move(1)" :size="48" />
+                    <ChevronRight :size="48" />
                 </div>
             </div>
         </div>
@@ -163,6 +169,7 @@ const move = (val: number) => {
     border-radius: 90%;
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 #prevSlide {

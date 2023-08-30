@@ -222,10 +222,6 @@ const handleSubmit = (e: SubmitEvent) => {
     align-items: flex-start;
     gap: 8px;
 
-    input[type="checkbox"] {
-        border-radius: 6px;
-    }
-
     span {
         width: 100%;
         font-size: 10px;
