@@ -63,6 +63,9 @@
             <button type="submit">WYŚLIJ</button>
 
             <!-- Error text -->
+            <p v-if="isError" class="errorText">
+                Proszę uzupełnić wymagane pola!
+            </p>
         </form>
 
         <!-- Modal close button -->
@@ -82,11 +85,48 @@ const props = defineProps<{
 const name = ref("");
 const surname = ref("");
 const email = ref("");
-const accept = ref("");
+const accept = ref(false);
 const isError = ref(false);
 
 const handleSubmit = (e: SubmitEvent) => {
     e.preventDefault();
+
+    let validate = true;
+
+    // Validate name & surname
+    if (
+        !name ||
+        !surname ||
+        name.value.length < 3 ||
+        surname.value.length < 3
+    ) {
+        validate = false;
+    }
+
+    // Validate email
+    if (
+        !/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(
+            email.value
+        )
+    ) {
+        validate = false;
+    }
+
+    // Validate accept
+    if (!accept.value) {
+        validate = false;
+    }
+
+    if (validate) {
+        console.log({
+            name: name.value,
+            surname: surname.value,
+            email: email.value,
+            accept: accept.value,
+        });
+    } else {
+        isError.value = true;
+    }
 };
 </script>
 
@@ -96,12 +136,14 @@ const handleSubmit = (e: SubmitEvent) => {
     position: absolute;
     right: 20px;
     top: 20px;
+    cursor: pointer;
 }
 
 #contactForm {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    width: 260px;
 
     button[type="submit"] {
         all: unset;
@@ -116,6 +158,7 @@ const handleSubmit = (e: SubmitEvent) => {
         align-items: center;
         letter-spacing: 0px;
         cursor: pointer;
+        transition: all 0.5s;
 
         &:hover {
             letter-spacing: 6.4px;
@@ -127,6 +170,7 @@ const handleSubmit = (e: SubmitEvent) => {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 100%;
 }
 
 .inputLabel {
@@ -145,7 +189,8 @@ const handleSubmit = (e: SubmitEvent) => {
 .input {
     all: unset;
     border-radius: 6px;
-    width: 260px;
+    width: 100%;
+    box-sizing: border-box;
     padding: 14px 16px;
     display: flex;
     align-items: center;
@@ -156,6 +201,12 @@ const handleSubmit = (e: SubmitEvent) => {
     color: $gray-color;
     font-size: 12px;
     letter-spacing: 4.8px;
+}
+
+.errorText {
+    font-size: 12px;
+    color: $primary-color;
+    text-align: center;
 }
 
 #formRequirement {

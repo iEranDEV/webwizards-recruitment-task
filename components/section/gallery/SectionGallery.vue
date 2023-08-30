@@ -7,12 +7,16 @@
 
 <style lang="scss">
 #gallerySection {
-    height: 100lvh;
     background-color: $white-color;
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: center;
     gap: 20px;
     flex-direction: column;
+    padding-top: 100px;
+
+    @include md {
+        height: 100lvh;
+    }
 }
 </style>

@@ -106,7 +106,11 @@ const closeContactModal = () => {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    gap: 5px;
+
+    @include xl {
+        gap: 20px;
+    }
 
     @media screen and (max-width: 1024px) {
         flex-direction: column;

@@ -10,9 +10,7 @@
                 'px)',
             background: 'url(' + props.path + ')',
         }"
-    >
-        <!--<img class="slideImg" :src="props.path" alt="Slide" />-->
-    </div>
+    ></div>
 </template>
 
 <script setup lang="ts">
@@ -25,8 +23,8 @@ const props = defineProps<{
 const calcGap = () => {
     const val = props.index - props.currentSlide;
 
-    if (val < 0) return "-" + Math.abs(val) * 100;
-    return "+" + val * 100;
+    if (val < 0) return "-" + Math.abs(val) * 75;
+    return "+" + val * 75;
 };
 calcGap();
 </script>
@@ -38,14 +36,10 @@ calcGap();
     width: 100%;
     top: 0px;
     left: 0px;
-    background: green;
     overflow: hidden;
     transition: all 1s;
     background-position: center !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
-}
-.slideImg {
-    width: 100%;
 }
 </style>

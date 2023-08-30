@@ -35,10 +35,14 @@ const scrollTo = (e: MouseEvent) => {
     justify-content: center;
     align-items: center;
     box-shadow: 0px 0px 0px $white-color;
-    padding: 0px 40px;
+    padding: 0px 20px;
     color: $gray-color;
     cursor: pointer;
     transition: box-shadow 0.2s ease-in-out;
+
+    @include xl {
+        padding: 0px 40px;
+    }
 
     &:hover {
         box-shadow: 0px 5px 10px $secondary-color;

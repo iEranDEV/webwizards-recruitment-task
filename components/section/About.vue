@@ -42,10 +42,11 @@
     background: $white-color;
     display: flex;
     align-items: center;
-    height: auto;
+    min-height: 100lvh;
+    padding-top: 100px;
 
-    @include xl {
-        height: 100lvh;
+    @include md {
+        margin-top: 0px;
     }
 }
 
@@ -56,7 +57,7 @@
     background-position: bottom;
     background-repeat: no-repeat;
 
-    @include lg {
+    @include md {
         grid-area: 1 / 1 / 2 / 6;
     }
 
@@ -71,14 +72,14 @@
     flex-direction: column;
     padding: 20px 20px;
 
-    @include lg {
+    @include md {
+        padding: 0px 0px;
+        margin-right: 35px;
         display: grid;
         grid-template-columns: repeat(12, 1fr);
-        column-gap: 16px;
     }
 
     @include xl {
-        padding: 0px 0px;
         grid-template-columns: 140px repeat(12, 1fr);
         margin-right: 140px;
     }
@@ -89,7 +90,7 @@
     flex-direction: column;
     width: 100%;
 
-    @include lg {
+    @include md {
         grid-area: 1 / 7 / 6 / 13;
     }
 

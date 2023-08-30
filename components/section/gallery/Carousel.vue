@@ -43,6 +43,7 @@ const slides = [
 ];
 
 const currentSlide = ref(2);
+const touchStartPosX = ref(0);
 
 const set = (val: number) => {
     currentSlide.value = val;
@@ -65,8 +66,13 @@ const move = (val: number) => {
     align-items: center;
     flex-direction: column;
     width: 100%;
-    height: 75%;
+
+    @include xl {
+        width: 100%;
+        height: 75%;
+    }
 }
+
 #carousel {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -74,14 +80,22 @@ const move = (val: number) => {
     height: 100%;
     overflow: hidden;
 
+    @include md {
+        padding: 0px 20px;
+    }
+
     @include lg {
+        padding: 0px 70px;
+    }
+
+    @include xl {
         padding: 0px 140px;
     }
 }
 #slider {
     position: relative;
-    height: 100%;
     grid-area: 1 / 2 / 2 / 12;
+    aspect-ratio: 2/1;
 }
 
 .active-arrow {

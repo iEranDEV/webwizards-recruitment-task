@@ -21,10 +21,17 @@
 
 .modalBox {
     background: $white-color;
-    padding: 55px 140px;
+    padding: 55px 20px 20px 20px;
+    width: 90%;
     max-width: 530px;
     box-shadow: 0px 0px 99px $primary-color;
     border-radius: 21px;
     position: relative;
+    display: flex;
+    justify-content: center;
+
+    @include lg {
+        padding: 55px 135px;
+    }
 }
 </style>
