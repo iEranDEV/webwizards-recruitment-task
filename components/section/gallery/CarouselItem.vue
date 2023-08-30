@@ -36,6 +36,7 @@ calcGap();
     width: 100%;
     top: 0px;
     left: 0px;
+    z-index: 40;
     overflow: hidden;
     transition: all 1s;
     background-position: center !important;

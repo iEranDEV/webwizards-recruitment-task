@@ -13,7 +13,7 @@
     justify-content: center;
     gap: 20px;
     flex-direction: column;
-    padding-top: 100px;
+    padding-top: 120px;
 
     @include md {
         height: 100lvh;

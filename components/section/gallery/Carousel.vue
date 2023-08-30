@@ -1,13 +1,23 @@
 <template>
     <div id="carouselWrapper">
-        <div id="carousel">
-            <div
-                id="prevSlide"
-                :class="{ 'active-arrow': currentSlide - 1 >= 0 }"
-            >
-                <ChevronLeft @click="move(-1)" :size="48" />
-            </div>
+        <!-- Carousel slider element -->
+        <div
+            @touchstart="handleTouchStart"
+            @touchmove="handleTouchMove"
+            @touchend="handleTouchEnd"
+            id="carousel"
+        >
+            <!-- Slides -->
             <div id="slider">
+                <!-- Previous slide -->
+                <div
+                    id="prevSlide"
+                    :class="{ 'active-arrow': currentSlide - 1 >= 0 }"
+                >
+                    <ChevronLeft @click="move(-1)" :size="48" />
+                </div>
+
+                <!-- Images -->
                 <SectionGalleryCarouselItem
                     v-for="(slide, index) in slides"
                     :key="slide"
@@ -15,14 +25,20 @@
                     :index="index"
                     :currentSlide="currentSlide"
                 />
-            </div>
-            <div
-                id="nextSlide"
-                :class="{ 'active-arrow': currentSlide < slides.length - 1 }"
-            >
-                <ChevronRight @click="move(1)" :size="48" />
+
+                <!-- Next slide -->
+                <div
+                    id="nextSlide"
+                    :class="{
+                        'active-arrow': currentSlide < slides.length - 1,
+                    }"
+                >
+                    <ChevronRight @click="move(1)" :size="48" />
+                </div>
             </div>
         </div>
+
+        <!-- Carousel pagination -->
         <SectionGalleryPagination
             :currentSlide="currentSlide"
             :set="set"
@@ -35,6 +51,7 @@
 import { ref } from "vue";
 import { ChevronRight, ChevronLeft } from "lucide-vue-next";
 
+// List of slides (images in carousel)
 const slides = [
     "/slides/slide1.png",
     "/slides/slide2.png",
@@ -42,13 +59,41 @@ const slides = [
     "/slides/slide4.png",
 ];
 
-const currentSlide = ref(2);
-const touchStartPosX = ref(0);
+// State variables
+const currentSlide = ref(0);
+const touchPosX = ref({
+    start: 0,
+    last: 0,
+});
 
+// Handle touchstart event (save x cord of touch)
+const handleTouchStart = (e: TouchEvent) => {
+    touchPosX.value = {
+        start: e.touches[0].clientX,
+        last: e.touches[0].clientX,
+    };
+};
+
+// Handle touchmove event (update x cord of last touch)
+const handleTouchMove = (e: TouchEvent) => {
+    touchPosX.value.last = e.touches[0].clientX;
+};
+
+// Handle touchend event (end of swipe)
+const handleTouchEnd = (e: TouchEvent) => {
+    if (touchPosX.value.start > touchPosX.value.last) {
+        move(1);
+    } else {
+        move(-1);
+    }
+};
+
+// Set current slide for specific number
 const set = (val: number) => {
     currentSlide.value = val;
 };
 
+// Move carousel by number of slides
 const move = (val: number) => {
     if (
         currentSlide.value + val >= 0 &&
@@ -65,20 +110,19 @@ const move = (val: number) => {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-top: 20px;
     width: 100%;
-
-    @include xl {
-        width: 100%;
-        height: 75%;
-    }
+    aspect-ratio: 2/1;
 }
 
 #carousel {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    display: flex;
     width: 100%;
     height: 100%;
+    align-items: center;
     overflow: hidden;
+    justify-content: center;
+    align-items: center;
 
     @include md {
         padding: 0px 20px;
@@ -94,8 +138,14 @@ const move = (val: number) => {
 }
 #slider {
     position: relative;
-    grid-area: 1 / 2 / 2 / 12;
+    width: 100%;
     aspect-ratio: 2/1;
+
+    @include md {
+        width: auto;
+        height: 100%;
+        grid-area: 1 / 2 / 2 / 12;
+    }
 }
 
 .active-arrow {
@@ -104,20 +154,32 @@ const move = (val: number) => {
 
 #prevSlide,
 #nextSlide {
-    height: 100%;
-    width: 100%;
-    display: flex;
     align-items: center;
     color: $gray-color;
+    position: absolute;
+    z-index: 50;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 90%;
+    display: flex;
+    align-items: center;
 }
 
 #prevSlide {
-    grid-area: 1 / 1 / 2 / 2;
-    justify-content: end;
+    left: 10px;
+
+    @include md {
+        left: 0px;
+        transform: translateX(-100%);
+    }
 }
 
 #nextSlide {
-    grid-area: 1 / 12 / 2 / 13;
-    justify-content: start;
+    right: 10px;
+
+    @include md {
+        right: 0px;
+        transform: translateX(100%);
+    }
 }
 </style>

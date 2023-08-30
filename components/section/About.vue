@@ -52,7 +52,7 @@
 
 #aboutImg {
     width: 100%;
-    height: 600px;
+    min-height: 500px;
     background-image: url("./about_img.png");
     background-position: bottom;
     background-repeat: no-repeat;
@@ -89,8 +89,10 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin-top: 20px;
 
     @include md {
+        margin-top: 0px;
         grid-area: 1 / 7 / 6 / 13;
     }
 

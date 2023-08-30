@@ -53,7 +53,7 @@ const closeContactModal = () => {
 <style lang="scss">
 #navBar {
     background-color: $white-color;
-    z-index: 50;
+    z-index: 2000;
     padding: 0px 20px;
     height: 100px;
     width: 100%;
